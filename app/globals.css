@@ -1,26 +1,152 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  FoggyBrain design tokens
+  Palette derived from the app icon: warm pinks/corals over a deep plum ink.
+  The site is deliberately low-cognitive-load: warm near-white ground,
+  generous spacing, short measures, soft edges.
+*/
+@theme {
+  --color-mist: #fbf6f3;
+  --color-ink: #2a2140;
+  --color-soft: #6f6688;
+  --color-rose: #d5527e;
+  --color-coral: #e8756a;
+  --color-blush: #f7e9e7;
+  --color-line: #eddedd;
+  --color-wave-1: #f7a8b8;
+  --color-wave-2: #ee7e9b;
+  --color-wave-3: #d5527e;
+
+  --font-display: var(--font-fraunces);
+  --font-body: var(--font-atkinson);
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-mist);
+  color: var(--color-ink);
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-display), Georgia, serif;
+  font-weight: 550;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+::selection {
+  background: var(--color-wave-1);
+  color: var(--color-ink);
+}
+
+a {
+  text-underline-offset: 3px;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-rose);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* --- Signature: the word "fog" resolves into focus on load --- */
+.fog-word {
+  display: inline-block;
+  animation: unfog 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes unfog {
+  0% {
+    filter: blur(10px);
+    opacity: 0.55;
+  }
+  100% {
+    filter: blur(0);
+    opacity: 1;
+  }
+}
+
+/* --- Fog waves: slow lateral drift, one tempo per layer --- */
+.wave-drift-1 {
+  animation: drift 46s ease-in-out infinite alternate;
+}
+.wave-drift-2 {
+  animation: drift 62s ease-in-out infinite alternate-reverse;
+}
+.wave-drift-3 {
+  animation: drift 84s ease-in-out infinite alternate;
+}
+
+@keyframes drift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-4.5%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fog-word,
+  .wave-drift-1,
+  .wave-drift-2,
+  .wave-drift-3 {
+    animation: none;
+  }
+}
+
+/* --- Article prose --- */
+.prose-fog {
+  max-width: 42rem;
+}
+.prose-fog p {
+  margin-bottom: 1.4em;
+}
+.prose-fog h2 {
+  font-size: 1.6rem;
+  margin-top: 2.4em;
+  margin-bottom: 0.7em;
+}
+.prose-fog ul {
+  list-style: none;
+  margin: 0 0 1.6em;
+  padding: 0;
+}
+.prose-fog ul li {
+  position: relative;
+  padding-left: 1.6em;
+  margin-bottom: 0.65em;
+}
+.prose-fog ul li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.62em;
+  width: 0.55em;
+  height: 0.55em;
+  border-radius: 999px;
+  background: var(--color-wave-2);
+}
+.prose-fog a {
+  color: var(--color-rose);
+  text-decoration: underline;
+  text-decoration-color: var(--color-wave-1);
+  text-decoration-thickness: 2px;
+}
+.prose-fog a:hover {
+  text-decoration-color: var(--color-rose);
 }
