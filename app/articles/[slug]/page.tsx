@@ -5,7 +5,7 @@ import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Callout from "@/components/Callout";
 import EmailSignupForm from "@/components/EmailSignupForm";
-import { getAllArticles, getArticle } from "@/lib/articles";
+import { getAdjacentArticles, getAllArticles, getArticle } from "@/lib/articles";
 
 export function generateStaticParams() {
   return getAllArticles().map((a) => ({ slug: a.slug }));
@@ -52,6 +52,7 @@ export default async function ArticlePage({
   const article = getArticle(slug);
   if (!article) notFound();
   const { meta } = article;
+  const { prev, next } = getAdjacentArticles(slug);
 
   const articleJsonLd = {
     "@context": "https://schema.org",
@@ -142,6 +143,40 @@ export default async function ArticlePage({
           <EmailSignupForm />
         </div>
       </aside>
+
+      {(prev || next) && (
+        <nav
+          aria-label="More articles"
+          className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2"
+        >
+          {prev && (
+            <Link
+              href={`/articles/${prev.slug}`}
+              className="group rounded-3xl border border-line bg-white/70 p-6 no-underline transition-shadow hover:shadow-[0_10px_30px_rgba(42,33,64,0.08)]"
+            >
+              <p className="flex items-center gap-1 text-[0.8rem] font-bold uppercase tracking-wide text-rose">
+                <span aria-hidden="true">←</span> Previous
+              </p>
+              <h2 className="mt-2 text-lg text-ink transition-colors group-hover:text-rose">
+                {prev.title}
+              </h2>
+            </Link>
+          )}
+          {next && (
+            <Link
+              href={`/articles/${next.slug}`}
+              className="group rounded-3xl border border-line bg-white/70 p-6 text-right no-underline transition-shadow hover:shadow-[0_10px_30px_rgba(42,33,64,0.08)] sm:col-start-2"
+            >
+              <p className="flex items-center justify-end gap-1 text-[0.8rem] font-bold uppercase tracking-wide text-rose">
+                Next <span aria-hidden="true">→</span>
+              </p>
+              <h2 className="mt-2 text-lg text-ink transition-colors group-hover:text-rose">
+                {next.title}
+              </h2>
+            </Link>
+          )}
+        </nav>
+      )}
 
       <p className="mt-10 text-[0.85rem] text-soft">
         This article is for information only and is not medical advice. If your

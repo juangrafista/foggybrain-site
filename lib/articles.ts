@@ -32,3 +32,12 @@ export function getArticle(slug: string) {
   const { data, content } = matter(fs.readFileSync(file, "utf8"));
   return { meta: { slug, ...(data as Omit<ArticleMeta, "slug">) }, content };
 }
+
+export function getAdjacentArticles(slug: string) {
+  const articles = getAllArticles();
+  const index = articles.findIndex((a) => a.slug === slug);
+  if (index === -1) return { prev: null, next: null };
+  const prev = articles[(index - 1 + articles.length) % articles.length];
+  const next = articles[(index + 1) % articles.length];
+  return { prev, next };
+}

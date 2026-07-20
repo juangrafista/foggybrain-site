@@ -97,6 +97,57 @@ a {
   }
 }
 
+/* --- Screenshot lightbox --- */
+.lightbox-backdrop {
+  animation: lightbox-backdrop-in 0.22s ease forwards;
+}
+.lightbox-backdrop-out {
+  animation: lightbox-backdrop-out 0.18s ease forwards;
+}
+.lightbox-content {
+  animation: lightbox-content-in 0.28s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+.lightbox-content-out {
+  animation: lightbox-content-out 0.18s ease forwards;
+}
+
+@keyframes lightbox-backdrop-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes lightbox-backdrop-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes lightbox-content-in {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+@keyframes lightbox-content-out {
+  from {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.96) translateY(4px);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
@@ -104,7 +155,11 @@ a {
   .fog-word,
   .wave-drift-1,
   .wave-drift-2,
-  .wave-drift-3 {
+  .wave-drift-3,
+  .lightbox-backdrop,
+  .lightbox-backdrop-out,
+  .lightbox-content,
+  .lightbox-content-out {
     animation: none;
   }
 }

@@ -3,7 +3,29 @@ import Image from "next/image";
 import Link from "next/link";
 import EmailSignupForm from "@/components/EmailSignupForm";
 import FogWaves from "@/components/FogWaves";
+import HabitsShowcase from "@/components/HabitsShowcase";
 import { getAllArticles } from "@/lib/articles";
+
+const habits = [
+  {
+    n: "1",
+    title: "Log in two taps",
+    body: "Rate your fog when you think of it — from the app, a widget, or your Lock Screen. It takes seconds, on purpose.",
+    image: "/images/app/screenshot-log.png",
+  },
+  {
+    n: "2",
+    title: "Let patterns emerge",
+    body: "FoggyBrain quietly lines your ratings up against sleep, stress, sugar, exercise, cycle, and even the weather.",
+    image: "/images/app/screenshot-patterns.png",
+  },
+  {
+    n: "3",
+    title: "See what helps",
+    body: "After a couple of weeks, your triggers stop being a mystery. Bring the report to your doctor, or just to yourself.",
+    image: "/images/app/screenshot-insights.png",
+  },
+];
 
 export const metadata: Metadata = {
   alternates: {
@@ -75,45 +97,7 @@ export default function Home() {
       <section className="bg-gradient-to-b from-[#d5527e] to-[#c2497f] text-mist">
         <div className="mx-auto w-full max-w-5xl px-6 py-16">
           <h2 className="text-3xl">Three small habits. One clearer head.</h2>
-          <div className="mt-10 grid gap-10 sm:grid-cols-3">
-            {[
-              {
-                n: "1",
-                title: "Log in two taps",
-                body: "Rate your fog when you think of it — from the app, a widget, or your Lock Screen. It takes seconds, on purpose.",
-                image: "/images/app/screenshot-log.png",
-              },
-              {
-                n: "2",
-                title: "Let patterns emerge",
-                body: "FoggyBrain quietly lines your ratings up against sleep, stress, sugar, exercise, cycle, and even the weather.",
-                image: "/images/app/screenshot-patterns.png",
-              },
-              {
-                n: "3",
-                title: "See what helps",
-                body: "After a couple of weeks, your triggers stop being a mystery. Bring the report to your doctor, or just to yourself.",
-                image: "/images/app/screenshot-insights.png",
-              },
-            ].map((s) => (
-              <div key={s.n} className="text-center sm:text-left">
-                <div className="relative mx-auto aspect-[323/700] w-40 overflow-hidden rounded-[1.6rem] border-2 border-mist/20 shadow-[0_20px_45px_rgba(15,10,30,0.45)] sm:mx-0">
-                  <Image
-                    src={s.image}
-                    alt={`Screenshot of the FoggyBrain app: ${s.title}`}
-                    fill
-                    sizes="10rem"
-                    className="object-cover"
-                  />
-                </div>
-                <p className="mt-6 font-[family-name:var(--font-fraunces)] text-3xl font-semibold text-mist/40">
-                  {s.n}
-                </p>
-                <h3 className="mt-1 text-xl">{s.title}</h3>
-                <p className="mt-2 text-[0.98rem] text-mist/85">{s.body}</p>
-              </div>
-            ))}
-          </div>
+          <HabitsShowcase habits={habits} />
         </div>
       </section>
 
