@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "Our story",
@@ -69,15 +70,15 @@ export default function StoryPage() {
         <div>
           <p className="font-bold">Try FoggyBrain</p>
           <p className="text-[0.95rem] text-soft">
-            Free on the App Store. No account, no ads, your data stays yours.
+            In private beta now. No account, no ads, your data stays yours.
           </p>
         </div>
-        <a
-          href="https://apps.apple.com/app/foggybrain"
+        <Link
+          href="/#waitlist"
           className="ml-auto shrink-0 rounded-full bg-ink px-5 py-2 text-mist no-underline transition-colors hover:bg-rose"
         >
-          Download
-        </a>
+          Join the beta
+        </Link>
       </div>
     </article>
   );

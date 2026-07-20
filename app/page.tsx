@@ -1,9 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
+import EmailSignupForm from "@/components/EmailSignupForm";
 import FogWaves from "@/components/FogWaves";
 import { getAllArticles } from "@/lib/articles";
-
-const APP_STORE_URL = "https://apps.apple.com/app/foggybrain";
 
 export default function Home() {
   const articles = getAllArticles().slice(0, 3);
@@ -33,10 +32,10 @@ export default function Home() {
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
             <a
-              href={APP_STORE_URL}
+              href="#waitlist"
               className="rounded-full bg-ink px-7 py-3 text-lg text-mist no-underline shadow-sm transition-colors hover:bg-rose"
             >
-              Download on the App Store
+              Join the private beta
             </a>
             <p className="text-[0.9rem] text-soft">
               Free to use. No account. Your data stays yours.
@@ -56,23 +55,29 @@ export default function Home() {
                 n: "1",
                 title: "Log in two taps",
                 body: "Rate your fog when you think of it — from the app, a widget, or your Lock Screen. It takes seconds, on purpose.",
+                image: "/images/app/screenshot-log.png",
               },
               {
                 n: "2",
                 title: "Let patterns emerge",
                 body: "FoggyBrain quietly lines your ratings up against sleep, stress, sugar, exercise, cycle, and even the weather.",
+                image: "/images/app/screenshot-patterns.png",
               },
               {
                 n: "3",
                 title: "See what helps",
                 body: "After a couple of weeks, your triggers stop being a mystery. Bring the report to your doctor, or just to yourself.",
+                image: "/images/app/screenshot-insights.png",
               },
             ].map((s) => (
-              <div key={s.n}>
-                <p className="font-[family-name:var(--font-fraunces)] text-5xl font-semibold text-mist/40">
+              <div key={s.n} className="text-center sm:text-left">
+                <div className="relative mx-auto aspect-[323/700] w-40 overflow-hidden rounded-[1.6rem] border-2 border-mist/20 shadow-[0_20px_45px_rgba(15,10,30,0.45)] sm:mx-0">
+                  <Image src={s.image} alt="" fill sizes="10rem" className="object-cover" />
+                </div>
+                <p className="mt-6 font-[family-name:var(--font-fraunces)] text-3xl font-semibold text-mist/40">
                   {s.n}
                 </p>
-                <h3 className="mt-2 text-xl">{s.title}</h3>
+                <h3 className="mt-1 text-xl">{s.title}</h3>
                 <p className="mt-2 text-[0.98rem] text-mist/85">{s.body}</p>
               </div>
             ))}
@@ -101,6 +106,23 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Waitlist signup */}
+      <section id="waitlist" className="mx-auto w-full max-w-5xl px-6 pb-20 scroll-mt-24">
+        <div className="rounded-3xl bg-blush px-8 py-12 text-center">
+          <p className="text-[0.85rem] font-bold uppercase tracking-widest text-rose">
+            Now in private beta
+          </p>
+          <h2 className="mt-3 text-3xl">Get early access</h2>
+          <p className="mx-auto mt-3 max-w-md text-soft">
+            We&apos;re testing with a small group before the App Store launch.
+            Join the list and we&apos;ll email you when a spot opens up.
+          </p>
+          <div className="mt-6 flex justify-center">
+            <EmailSignupForm />
+          </div>
+        </div>
+      </section>
+
       {/* Articles */}
       <section className="mx-auto w-full max-w-5xl px-6 pb-8">
         <div className="flex items-baseline justify-between gap-4">
@@ -119,6 +141,17 @@ export default function Home() {
               href={`/articles/${a.slug}`}
               className="group rounded-3xl border border-line bg-white/70 p-6 no-underline transition-shadow hover:shadow-[0_10px_30px_rgba(42,33,64,0.08)]"
             >
+              {a.image && (
+                <div className="relative mb-4 aspect-[1200/630] w-full overflow-hidden rounded-2xl bg-blush">
+                  <Image
+                    src={a.image}
+                    alt=""
+                    fill
+                    sizes="(min-width: 640px) 20rem, 100vw"
+                    className="object-cover"
+                  />
+                </div>
+              )}
               <p className="text-[0.8rem] font-bold uppercase tracking-wide text-rose">
                 {a.category}
               </p>

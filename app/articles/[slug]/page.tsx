@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Callout from "@/components/Callout";
+import EmailSignupForm from "@/components/EmailSignupForm";
 import { getAllArticles, getArticle } from "@/lib/articles";
 
 export function generateStaticParams() {
@@ -36,23 +38,36 @@ export default async function ArticlePage({
       </p>
       <h1 className="mt-3 text-4xl">{article.meta.title}</h1>
       <p className="mt-4 text-lg text-soft">{article.meta.description}</p>
+      {article.meta.image && (
+        <div className="relative mt-8 aspect-[1200/630] w-full overflow-hidden rounded-3xl bg-blush">
+          <Image
+            src={article.meta.image}
+            alt=""
+            fill
+            sizes="(min-width: 768px) 48rem, 100vw"
+            className="object-cover"
+            priority
+          />
+        </div>
+      )}
       <hr className="my-8 border-line" />
       <div className="prose-fog">
         <MDXRemote source={article.content} components={{ Callout }} />
       </div>
 
-      <aside className="mt-14 rounded-3xl bg-blush px-7 py-8 text-center">
-        <h2 className="text-xl">Curious what triggers your fog?</h2>
+      <aside className="mt-14 rounded-3xl bg-blush px-7 py-10 text-center">
+        <p className="text-[0.8rem] font-bold uppercase tracking-widest text-rose">
+          Now in private beta
+        </p>
+        <h2 className="mt-3 text-xl">Curious what triggers your fog?</h2>
         <p className="mx-auto mt-2 max-w-md text-[0.98rem] text-soft">
           FoggyBrain helps you log symptoms in seconds and shows the patterns
-          behind them. Free, private, no account.
+          behind them. Free, private, no account. Join the list and
+          we&apos;ll email you when a spot opens up.
         </p>
-        <a
-          href="https://apps.apple.com/app/foggybrain"
-          className="mt-4 inline-block rounded-full bg-ink px-6 py-2.5 text-mist no-underline transition-colors hover:bg-rose"
-        >
-          Get FoggyBrain for iPhone
-        </a>
+        <div className="mt-5 flex justify-center">
+          <EmailSignupForm />
+        </div>
       </aside>
 
       <p className="mt-10 text-[0.85rem] text-soft">

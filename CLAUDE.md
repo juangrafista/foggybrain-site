@@ -45,9 +45,11 @@ Note: `next start` serves the LAST build — rebuild and restart to see changes 
 
 ## TODOs / pending
 
-- [ ] Connect repo to Vercel; add `foggybrain.app` domain + DNS.
+- [x] Connect repo to Vercel; add `foggybrain.app` domain (project `foggybrain-site` under `juangrafistas-projects`, GitHub auto-deploy connected). DNS still pending: add `A @ 76.76.21.21` and `A www 76.76.21.21` at Hover (registrar wasn't switched to Vercel nameservers).
 - [ ] `/story` is a Claude-written draft in Juan's voice — Juan must personalize it with real details before promoting the page.
-- [ ] App Store URL is a placeholder (`https://apps.apple.com/app/foggybrain`) in `Header.tsx`, `app/page.tsx`, `app/story/page.tsx`, and the article CTA in `app/articles/[slug]/page.tsx` — replace with the real URL once the app is public.
+- [x] App Store CTA replaced site-wide with an email waitlist signup (`components/EmailSignupForm.tsx`, Kit/ConvertKit form 9704183, embedded at `/#waitlist` on the landing page) since the app is in private beta, not public yet. `Header.tsx`, `app/story/page.tsx`, and the article CTA all link to `/#waitlist` now.
+- [ ] Once the app has a TestFlight public link, add it to the waitlist confirmation email (or alongside the form) so subscribers can join beta testing directly.
+- [ ] Once public on the App Store, decide whether to keep the email list running (marketing/launch announcements) or swap the primary CTA back to a direct download link.
 - [ ] Add a sitemap (`app/sitemap.ts`) + robots before promoting articles.
 - [ ] Once the domain is live: update the iOS app's Settings + paywall privacy links and the App Store Connect privacy-policy URL to `https://foggybrain.app/privacy`, and put redirects (or at least matching content) on the old GitHub Pages URLs. Coordinate in the app repo.
 - [ ] Set up `hello@foggybrain.app` email forwarding at the registrar, then update contact addresses here and in the app (currently juangrafista@icloud.com everywhere).

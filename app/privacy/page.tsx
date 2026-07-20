@@ -53,7 +53,7 @@ const sections: { h: string; body: string[] }[] = [
   {
     h: "This website",
     body: [
-      "foggybrain.app is a static website. It sets no cookies, runs no analytics, and collects no personal data.",
+      "foggybrain.app is a static website. It sets no cookies, runs no analytics, and collects no personal data — with one exception: if you join the beta waitlist, the email address you enter is collected and stored by our email provider, Kit, solely to send you updates about FoggyBrain and your beta access. See Kit's privacy policy at kit.com/privacy for details on how they handle it. You can unsubscribe at any time via the link in any email we send.",
     ],
   },
   {

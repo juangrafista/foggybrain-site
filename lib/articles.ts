@@ -11,6 +11,7 @@ export type ArticleMeta = {
   category: string;
   readMinutes: number;
   date: string;
+  image?: string;
 };
 
 export function getAllArticles(): ArticleMeta[] {
