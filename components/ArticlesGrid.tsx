@@ -46,7 +46,7 @@ export default function ArticlesGrid({ articles }: { articles: ArticleMeta[] }) 
               <div className="relative aspect-[1200/630] w-full overflow-hidden rounded-2xl bg-blush">
                 <Image
                   src={a.image}
-                  alt=""
+                  alt={a.title}
                   fill
                   sizes="(min-width: 640px) 24rem, 100vw"
                   className="object-cover"

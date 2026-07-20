@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Our story",
   description:
     "FoggyBrain was built during a long COVID recovery, by someone who needed it and couldn't find it.",
+  alternates: {
+    canonical: "/story",
+  },
 };
 
 export default function StoryPage() {

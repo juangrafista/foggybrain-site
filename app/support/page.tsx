@@ -4,6 +4,9 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Support",
   description: "Help and frequently asked questions for the FoggyBrain app.",
+  alternates: {
+    canonical: "/support",
+  },
 };
 
 const faqs: { q: string; a: React.ReactNode }[] = [

@@ -19,7 +19,28 @@ export async function generateMetadata({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) return {};
-  return { title: article.meta.title, description: article.meta.description };
+  const { meta } = article;
+  return {
+    title: meta.title,
+    description: meta.description,
+    alternates: {
+      canonical: `/articles/${meta.slug}`,
+    },
+    openGraph: {
+      type: "article",
+      title: meta.title,
+      description: meta.description,
+      url: `/articles/${meta.slug}`,
+      publishedTime: meta.date,
+      images: meta.image ? [meta.image] : undefined,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: meta.title,
+      description: meta.description,
+      images: meta.image ? [meta.image] : undefined,
+    },
+  };
 }
 
 export default async function ArticlePage({
@@ -30,19 +51,71 @@ export default async function ArticlePage({
   const { slug } = await params;
   const article = getArticle(slug);
   if (!article) notFound();
+  const { meta } = article;
+
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: meta.title,
+    description: meta.description,
+    image: meta.image ? [`https://foggybrain.app${meta.image}`] : undefined,
+    datePublished: meta.date,
+    dateModified: meta.date,
+    author: { "@type": "Organization", name: "FoggyBrain" },
+    publisher: {
+      "@type": "Organization",
+      name: "FoggyBrain",
+      logo: {
+        "@type": "ImageObject",
+        url: "https://foggybrain.app/app-icon.png",
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `https://foggybrain.app/articles/${meta.slug}`,
+    },
+  };
+
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://foggybrain.app" },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Articles",
+        item: "https://foggybrain.app/articles",
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: meta.title,
+        item: `https://foggybrain.app/articles/${meta.slug}`,
+      },
+    ],
+  };
 
   return (
     <article className="mx-auto w-full max-w-3xl px-6 py-14">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
       <p className="text-[0.8rem] font-bold uppercase tracking-wide text-rose">
-        {article.meta.category} · {article.meta.readMinutes} min read
+        {meta.category} · {meta.readMinutes} min read
       </p>
-      <h1 className="mt-3 text-4xl">{article.meta.title}</h1>
-      <p className="mt-4 text-lg text-soft">{article.meta.description}</p>
-      {article.meta.image && (
+      <h1 className="mt-3 text-4xl">{meta.title}</h1>
+      <p className="mt-4 text-lg text-soft">{meta.description}</p>
+      {meta.image && (
         <div className="relative mt-8 aspect-[1200/630] w-full overflow-hidden rounded-3xl bg-blush">
           <Image
-            src={article.meta.image}
-            alt=""
+            src={meta.image}
+            alt={meta.title}
             fill
             sizes="(min-width: 768px) 48rem, 100vw"
             className="object-cover"

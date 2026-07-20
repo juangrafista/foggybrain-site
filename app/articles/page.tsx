@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: "Articles about brain fog",
   description:
     "Plain-language, evidence-based articles on brain fog: what causes it, and how sleep, food, movement, and stress shape mental clarity.",
+  alternates: {
+    canonical: "/articles",
+  },
 };
 
 export default function ArticlesPage() {

@@ -1,14 +1,40 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import EmailSignupForm from "@/components/EmailSignupForm";
 import FogWaves from "@/components/FogWaves";
 import { getAllArticles } from "@/lib/articles";
 
+export const metadata: Metadata = {
+  alternates: {
+    canonical: "/",
+  },
+};
+
+const softwareApplicationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "FoggyBrain",
+  operatingSystem: "iOS",
+  applicationCategory: "HealthApplication",
+  description:
+    "FoggyBrain is a gentle iPhone app for tracking brain fog and connecting it to sleep, stress, food, and weather.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "USD",
+  },
+};
+
 export default function Home() {
   const articles = getAllArticles().slice(0, 3);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(softwareApplicationJsonLd) }}
+      />
       {/* Hero */}
       <section className="relative">
         <div className="mx-auto w-full max-w-5xl px-6 pb-10 pt-14 sm:pt-20 text-center">
@@ -72,7 +98,13 @@ export default function Home() {
             ].map((s) => (
               <div key={s.n} className="text-center sm:text-left">
                 <div className="relative mx-auto aspect-[323/700] w-40 overflow-hidden rounded-[1.6rem] border-2 border-mist/20 shadow-[0_20px_45px_rgba(15,10,30,0.45)] sm:mx-0">
-                  <Image src={s.image} alt="" fill sizes="10rem" className="object-cover" />
+                  <Image
+                    src={s.image}
+                    alt={`Screenshot of the FoggyBrain app: ${s.title}`}
+                    fill
+                    sizes="10rem"
+                    className="object-cover"
+                  />
                 </div>
                 <p className="mt-6 font-[family-name:var(--font-fraunces)] text-3xl font-semibold text-mist/40">
                   {s.n}
@@ -145,7 +177,7 @@ export default function Home() {
                 <div className="relative mb-4 aspect-[1200/630] w-full overflow-hidden rounded-2xl bg-blush">
                   <Image
                     src={a.image}
-                    alt=""
+                    alt={a.title}
                     fill
                     sizes="(min-width: 640px) 20rem, 100vw"
                     className="object-cover"
