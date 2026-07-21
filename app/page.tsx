@@ -125,13 +125,20 @@ export default function Home() {
       {/* Waitlist signup */}
       <section id="waitlist" className="mx-auto w-full max-w-5xl px-6 pb-20 scroll-mt-24">
         <div className="rounded-3xl bg-blush px-8 py-12 text-center">
-          <p className="text-[0.85rem] font-bold uppercase tracking-widest text-rose">
+          <Image
+            src="/app-icon.png"
+            alt="The FoggyBrain app icon: a calm face resting under soft pink waves"
+            width={64}
+            height={64}
+            className="mx-auto rounded-[16px] shadow-[0_14px_40px_rgba(213,82,126,0.35)]"
+          />
+          <p className="mt-4 text-[0.85rem] font-bold uppercase tracking-widest text-rose">
             Now in private beta
           </p>
           <h2 className="mt-3 text-3xl">Get early access</h2>
           <p className="mx-auto mt-3 max-w-md text-soft">
             We&apos;re testing with a small group before the App Store launch.
-            Join the list and we&apos;ll email you when a spot opens up.
+            Join the list and get a link to test the app for free.
           </p>
           <div className="mt-6 flex justify-center">
             <EmailSignupForm />
