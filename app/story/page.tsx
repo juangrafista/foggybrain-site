@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import WaitlistCallout from "@/components/WaitlistCallout";
+import AppCallout from "@/components/AppCallout";
 
 export const metadata: Metadata = {
   title: "Our story",
@@ -62,7 +62,7 @@ export default function StoryPage() {
       </div>
 
       <div className="mt-12">
-        <WaitlistCallout />
+        <AppCallout />
       </div>
     </article>
   );

@@ -56,7 +56,7 @@ const sections: { h: string; body: string[] }[] = [
   {
     h: "This website",
     body: [
-      "foggybrain.app is a static website. It sets no cookies and collects no personal data, with two exceptions. First, we use Vercel Web Analytics to see aggregate traffic (like which pages get visited and roughly how many people are viewing them) — it's cookieless and doesn't track you individually or across other sites; see vercel.com/legal/privacy-policy for details. Second, if you join the beta waitlist, the email address you enter is collected and stored by our email provider, Kit, solely to send you updates about FoggyBrain and your beta access — see kit.com/privacy for details, and you can unsubscribe at any time via the link in any email we send.",
+      "foggybrain.app is a static website. It sets no cookies and collects no personal data, with two exceptions. First, we use Vercel Web Analytics to see aggregate traffic (like which pages get visited and roughly how many people are viewing them) — it's cookieless and doesn't track you individually or across other sites; see vercel.com/legal/privacy-policy for details. Second, if you joined the beta waitlist, the email address you entered was collected and stored by our email provider, Kit, solely to send you updates about FoggyBrain — see kit.com/privacy for details, and you can unsubscribe at any time via the link in any email we send.",
     ],
   },
   {

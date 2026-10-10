@@ -1,6 +1,6 @@
 # foggybrain.app
 
-Marketing and content site for [FoggyBrain](https://apps.apple.com/app/foggybrain), the brain fog tracking app for iOS.
+Marketing and content site for [FoggyBrain](https://apps.apple.com/gb/app/foggybrain-brain-fog-tracker/id6759265919), the brain fog tracking app for iOS.
 
 Fully static Next.js (App Router). No CMS, no database, no analytics.
 

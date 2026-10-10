@@ -4,7 +4,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { MDXRemote } from "next-mdx-remote/rsc";
 import Callout from "@/components/Callout";
-import WaitlistCallout from "@/components/WaitlistCallout";
+import AppCallout from "@/components/AppCallout";
 import { getAdjacentArticles, getAllArticles, getArticle } from "@/lib/articles";
 
 export function generateStaticParams() {
@@ -130,7 +130,7 @@ export default async function ArticlePage({
       </div>
 
       <div className="mt-14">
-        <WaitlistCallout />
+        <AppCallout />
       </div>
 
       {(prev || next) && (

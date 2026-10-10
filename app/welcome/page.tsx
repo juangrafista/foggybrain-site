@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-
-const TESTFLIGHT_URL = "https://testflight.apple.com/join/kWXVb9ST";
+import AppStoreButton from "@/components/AppStoreButton";
 
 export const metadata: Metadata = {
   title: "You're in",
-  description: "Join the FoggyBrain TestFlight beta.",
+  description: "Download FoggyBrain on the App Store.",
   alternates: {
     canonical: "/welcome",
   },
@@ -32,27 +31,11 @@ export default function WelcomePage() {
       </p>
       <h1 className="mt-3 text-4xl">You&apos;re in</h1>
       <p className="mx-auto mt-4 max-w-md text-lg text-soft">
-        Thanks for confirming — you&apos;re on the list. Tap below to join the
-        FoggyBrain beta on TestFlight.
+        Thanks for confirming — you&apos;re on the list. FoggyBrain is now
+        on the App Store, so you can download it straight away.
       </p>
 
-      <a
-        href={TESTFLIGHT_URL}
-        className="mt-8 inline-block rounded-full bg-ink px-8 py-3 text-lg text-mist no-underline shadow-sm transition-colors hover:bg-rose"
-      >
-        Join the TestFlight beta
-      </a>
-
-      <div className="mx-auto mt-12 max-w-md rounded-3xl bg-blush px-7 py-8 text-left">
-        <h2 className="text-lg">First time with TestFlight?</h2>
-        <p className="mt-2 text-[0.98rem] text-soft">
-          TestFlight is Apple&apos;s official app for beta testing. If you
-          don&apos;t have it installed yet, the link above will prompt you to
-          install it from the App Store first — that&apos;s expected, just
-          follow the steps. Once TestFlight is installed, it&apos;ll take you
-          straight to FoggyBrain.
-        </p>
-      </div>
+      <AppStoreButton className="mt-8" />
 
       <p className="mx-auto mt-8 max-w-md text-[0.9rem] text-soft">
         Free to use. No account. Your data stays on your device — see the{" "}

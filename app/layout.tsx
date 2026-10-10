@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { Fraunces, Atkinson_Hyperlegible } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { APP_STORE_ID } from "@/lib/appStore";
 import "./globals.css";
 
 const fraunces = Fraunces({
@@ -40,6 +41,9 @@ export const metadata: Metadata = {
     description:
       "A gentle iPhone app for tracking brain fog and connecting it to sleep, stress, food, and weather.",
     images: ["/logo-flat.png"],
+  },
+  itunes: {
+    appId: APP_STORE_ID,
   },
 };
 

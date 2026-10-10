@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import EmailSignupForm from "@/components/EmailSignupForm";
+import AppStoreButton from "@/components/AppStoreButton";
 import FogWaves from "@/components/FogWaves";
 import HabitsShowcase from "@/components/HabitsShowcase";
 import { getAllArticles } from "@/lib/articles";
+import { APP_STORE_URL } from "@/lib/appStore";
 
 const habits = [
   {
@@ -46,6 +47,8 @@ const softwareApplicationJsonLd = {
     price: "0",
     priceCurrency: "USD",
   },
+  downloadUrl: APP_STORE_URL,
+  installUrl: APP_STORE_URL,
 };
 
 export default function Home() {
@@ -79,12 +82,7 @@ export default function Home() {
             helps.
           </p>
           <div className="mt-8 flex flex-col items-center gap-3">
-            <a
-              href="#waitlist"
-              className="rounded-full bg-ink px-7 py-3 text-lg text-mist no-underline shadow-sm transition-colors hover:bg-rose"
-            >
-              Join the private beta
-            </a>
+            <AppStoreButton />
             <p className="text-[0.9rem] text-soft">
               Free to use. No account. Your data stays yours.
             </p>
@@ -122,8 +120,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Waitlist signup */}
-      <section id="waitlist" className="mx-auto w-full max-w-5xl px-6 pb-20 scroll-mt-24">
+      {/* Download */}
+      <section id="download" className="mx-auto w-full max-w-5xl px-6 pb-20 scroll-mt-24">
         <div className="rounded-3xl bg-blush px-8 py-12 text-center">
           <Image
             src="/app-icon.png"
@@ -133,15 +131,15 @@ export default function Home() {
             className="mx-auto rounded-[16px] shadow-[0_14px_40px_rgba(213,82,126,0.35)]"
           />
           <p className="mt-4 text-[0.85rem] font-bold uppercase tracking-widest text-rose">
-            Now in private beta
+            Now on the App Store
           </p>
-          <h2 className="mt-3 text-3xl">Get early access</h2>
+          <h2 className="mt-3 text-3xl">Start tracking today</h2>
           <p className="mx-auto mt-3 max-w-md text-soft">
-            We&apos;re testing with a small group before the App Store launch.
-            Join the list and get a link to test the app for free.
+            FoggyBrain is free to download for iPhone. No account. Your data
+            stays on your device.
           </p>
           <div className="mt-6 flex justify-center">
-            <EmailSignupForm />
+            <AppStoreButton />
           </div>
         </div>
       </section>

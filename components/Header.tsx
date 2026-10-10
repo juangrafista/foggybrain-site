@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { APP_STORE_URL } from "@/lib/appStore";
 
 const links = [
   { href: "/articles", label: "Articles" },
@@ -44,12 +45,12 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/#waitlist"
+          <a
+            href={APP_STORE_URL}
             className="rounded-full bg-ink px-4 py-1.5 text-mist no-underline hover:bg-rose transition-colors"
           >
-            Join the beta
-          </Link>
+            Download
+          </a>
         </nav>
 
         <button
@@ -94,13 +95,13 @@ export default function Header() {
               {l.label}
             </Link>
           ))}
-          <Link
-            href="/#waitlist"
+          <a
+            href={APP_STORE_URL}
             onClick={() => setOpen(false)}
             className="mt-1 rounded-full bg-ink px-4 py-2.5 text-center text-mist no-underline hover:bg-rose transition-colors"
           >
-            Join the beta
-          </Link>
+            Download
+          </a>
         </nav>
       )}
     </header>
